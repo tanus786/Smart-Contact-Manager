@@ -23,6 +23,11 @@ public class HomeController {
 		m.addAttribute("title","About - Smart Contact Manager");
 		return "about";
 	}
+	@RequestMapping("/signup")
+	public String signup(Model m) {
+		m.addAttribute("title","Signup - Smart Contact Manager");
+		return "signup";
+	}
 	
 
 //	@Autowired
