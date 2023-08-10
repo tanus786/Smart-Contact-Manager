@@ -11,6 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
@@ -18,17 +21,23 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotBlank(message = "")
+	@Size(min = 3, max = 30, message = "Name must contain minimum 3 character!! ")
 	private String name;
 	@Column(unique = true)
+	@NotBlank(message = "Email should not be empty!!")
+	@Email
 	private String email;
+	@NotBlank(message = "Please enter Password!!")
 	private String password;
 	private String role;
 	private boolean enabled;
 	private String imageUrl;
 	@Column(length = 500)
 	private String about;
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Contact> contacts = new ArrayList<>();
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
