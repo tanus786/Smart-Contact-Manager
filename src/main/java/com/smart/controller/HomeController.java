@@ -1,6 +1,7 @@
 package com.smart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -57,6 +60,7 @@ public class HomeController {
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			User save = this.userRepository.save(user);
 			m.addAttribute("user", save);
 			m.addAttribute("message", new Message("Successfully Registered!!", "alert-success"));
@@ -68,17 +72,12 @@ public class HomeController {
 		}
 		return "signup";
 	}
-
-//	
-//	@GetMapping("/test")
-//	@ResponseBody
-//	public String Test() {
-//		User user = new User();
-//		user.setName("Tanu");
-//		user.setEmail("abc@gmail.com");
-//		Contact contact = new Contact();
-//		user.getContacts().add(contact);
-//		userRepository.save(user);
-//		return "Working";
-//	}
+/*
+	// Handler for custom Login
+	@GetMapping("/signin")
+	public String customLogin(Model m) {
+		m.addAttribute("title", "Login Page");
+		return "login";
+	}
+	*/
 }
