@@ -8,7 +8,46 @@
 
 <body>
 	<section>
-		<h1>This is private </h1>
+		<div class="">
+			<h1 class="text-center">All Contacts</h1>
+			<table class="table css-serial">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">SNo.</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Second Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c: ${contacts}">
+						<td scope="row"></td>
+						<td th:text="${c.name}"></td>
+						<td th:text="${c.secondName}"></td>
+						<td th:text="${c.email}"></td>
+						<td th:text="${c.phone}"></td>
+						<td>
+							<i class="fa-solid fa-trash"></i>
+							<i class="fa-solid fa-pen-to-square"></i>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--Pagination-->
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li th:if="${currentPage!=0}" class="page-item"><a class="page-link" href="#"
+							th:href="@{'/user/viewContacts/'+${currentPage-1}}">Previous</a></li>
+					<li th:classappend="${currentPage == i-1 ? 'active':''}"
+						th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link"
+							th:href="@{'/user/viewContacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
+					<li th:if="${currentPage+1!=totalPages}" class="page-item"><a class="page-link" href="#"
+							th:href="@{'/user/viewContacts/'+${currentPage+1}}">Next</a></li>
+				</ul>
+			</nav>
+		</div>
 	</section>
 </body>
 

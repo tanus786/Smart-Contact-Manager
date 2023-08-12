@@ -14,6 +14,18 @@ body {
 	color: white;
 }
 
+.css-serial {
+	counter-reset: serial-number;
+	/* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+	counter-increment: serial-number;
+	/* Increment the serial number counter */
+	content: counter(serial-number);
+	/* Display the counter */
+}
+
 .my-card {
 	padding: 20px;
 	background: white;
@@ -207,11 +219,11 @@ body {
 	margin-left: 20%;
 }
 
-.sidebar .crossBtn{
+.sidebar .crossBtn {
 	position: absolute;
 	top: 0;
 	right: 10px;
 	font-size: 36px;
 	cursor: pointer;
-	
+
 }
