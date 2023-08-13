@@ -8,6 +8,12 @@
 
 <body>
 	<section>
+		<!-- Alert -->
+		<div th:if="${msg}" class="container text-center">
+			<div th:classappend="${msg.type}" class="alert" role="alert">
+				<span th:text="${msg.content}"></span>
+			</div>
+		</div>
 		<div class="">
 			<h1 class="text-center">All Contacts</h1>
 			<table class="table css-serial">
@@ -24,13 +30,25 @@
 				<tbody>
 					<tr th:each="c: ${contacts}">
 						<td scope="row"></td>
-						<td th:text="${c.name}"></td>
+						<td>
+
+							<img class="my-profile-picture" th:src="@{'/images/'+${c.image}}" alt="Profile Picture" />
+							<span th:text="${c.name}"></span>
+
+						</td>
 						<td th:text="${c.secondName}"></td>
-						<td th:text="${c.email}"></td>
+						<td>
+							<a th:href="@{'/user/contact/'+${c.cId}}">
+								<span th:text="${c.email}"></span>
+							</a>
+						</td>
 						<td th:text="${c.phone}"></td>
 						<td>
-							<i class="fa-solid fa-trash"></i>
-							<i class="fa-solid fa-pen-to-square"></i>
+
+							<a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a>
+							<!--<form th:action="@{'/user/update/'+${c.cId}}" method="post">
+								<button class="btn btn-warning btn-sm mt-2" type="submit">Update</button>
+							</form>-->
 						</td>
 					</tr>
 				</tbody>

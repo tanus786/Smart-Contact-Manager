@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -103,7 +103,6 @@ public class UserController {
 	@GetMapping("/viewContacts/{page}")
 	public String viewContacts(@PathVariable("page") Integer page, Model m, Principal principal) {
 		m.addAttribute("title", "All Contacts");
-
 		// Sending Contact list from database to viewContacts page
 		String userName = principal.getName();
 		User user = this.userRepository.getUserByUserName(userName);
@@ -112,11 +111,66 @@ public class UserController {
 		m.addAttribute("contacts", allContacts);
 		m.addAttribute("currentPage", page);
 		m.addAttribute("totalPages", allContacts.getTotalPages());
-
 //		String userName = principal.getName();
 //		User user = this.userRepository.getUserByUserName(userName);
 //		List<Contact> contacts = user.getContacts();
 		return "normal/viewContacts";
 	}
 
+	// Showing specific Contact Information
+	@GetMapping("/contact/{cId}")
+	public String showContactDetails(@PathVariable("cId") Integer cId, Model m, Principal principal) {
+		System.out.println(cId);
+		Optional<Contact> optional = this.contactRepository.findById(cId);
+		Contact contact = optional.get();
+		String username = principal.getName();
+		User user = this.userRepository.getUserByUserName(username);
+		if (user.getId() == contact.getUser().getId()) {
+			m.addAttribute("contact", contact);
+			m.addAttribute("title", contact.getName());
+		}
+		return "normal/contactDetails";
+	}
+
+	// Delete the Contact
+	@GetMapping("/delete/{cid}")
+	public String deleteContact(@PathVariable("cid") Integer cid, Model m, Principal principal) {
+		Optional<Contact> optional = this.contactRepository.findById(cid);
+		Contact contact = optional.get();
+		this.contactRepository.delete(contact);
+		m.addAttribute("msg", new Message("Contact Deleted Successfully!!", "alert-success"));
+		return "redirect:/user/viewContacts/0";
+	}
+
+	// Update Contact Handler
+	@PostMapping("/update/{cid}")
+	public String updateContact(@PathVariable("cid") Integer cid, Model m) {
+		m.addAttribute("title", "Update Contact");
+		Contact contact = this.contactRepository.findById(cid).get();
+		m.addAttribute("contact", contact);
+		return "normal/update";
+	}
+
+	// Update contact processing
+//	@PostMapping("/processUpdate")
+//	public String processUpdate(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file,
+//			Model m, Principal principal) {
+//
+//		try {
+//			if (!file.isEmpty()) {
+//
+//			}
+//			User user = this.userRepository.getUserByUserName(principal.getName());
+//			System.out.println(user);
+//			contact.setUser(user);
+//			Contact save = this.contactRepository.save(contact);
+//			System.out.println(contact);
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+//
+//		return "";
+//	}
 }

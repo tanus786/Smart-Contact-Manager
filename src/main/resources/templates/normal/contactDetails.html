@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Contact</title>
+</head>
+
+<body>
+	<section>
+		<div class="card mx-auto" th:if="${contact}" style="width: 25rem;">
+			<div class="text-center mt-2">
+				<img style="width:200px; height: 200px;" class="card-img-top my-profile-picture"
+					th:src="@{'/images/'+${contact.image}}" alt="Profile Picture">
+			</div>
+			<div class="card-body">
+				<h5 class="card-title text-center"><span th:text="${contact.name}"></span> <span
+						th:text="${contact.secondName}"></span></h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Email</th>
+							<td scope="col" th:text=${contact.email}></td>
+						</tr>
+						<tr>
+							<th scope="col">Phone</th>
+							<td scope="col" th:text=${contact.phone}></td>
+						</tr>
+						<tr>
+							<th scope="col">Work</th>
+							<td scope="col" th:text=${contact.work}></td>
+						</tr>
+						<tr>
+							<th scope="col">About</th>
+							<td scope="col" th:text=${contact.description}></td>
+						</tr>
+					</thead>
+				</table>
+				<div class="container text-center">
+					<a th:href="@{'/user/delete/'+${contact.cId}}" class="btn btn-danger btn-sm btn-block">Delete</a>
+					<!--<button class="btn btn-warning btn-sm btn-block">Edit</button>
+				-->
+				</div>
+			</div>
+		</div>
+		<div>
+			<h1 th:unless="${contact}" class="text-center p-3 bg-danger text-white">You do not have permission to view
+				this contact!!</h1>
+		</div>
+	</section>
+</body>
+
+</html>
