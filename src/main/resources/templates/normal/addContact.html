@@ -15,44 +15,46 @@
 			</div>
 		</div>
 		<div>
-			<div class="card-body">
-				<h1 class="text-center">Add Contact</h1>
-				<div class="container-fluid mt-1">
-					<div class="row">
-						<div class="col-md-6 offset-md-3">
-							<form action="#" th:object="${contact}" enctype="multipart/form-data" method="post"
-								th:action="@{/user/process-contact}" class="mt-2">
-								<div class="input-group">
-									<input class="form-control" type="text" id="firstName" name="name"
-										placeholder="First Name" required />
-								</div>
-								<div class="input-group mt-3">
-									<input class="form-control" type="text" id="secondName" name="secondName"
-										placeholder="Second Name" required />
-								</div>
-								<div class="input-group mt-3">
-									<input class="form-control" type="email" id="email" name="email" placeholder="Email"
-										required />
-								</div>
-								<div class="input-group mt-3">
-									<input class="form-control" type="text" id="phone" name="phone" placeholder="Phone"
-										required />
-								</div>
-								<div class="input-group mt-3">
-									<input class="form-control" type="text" id="work" name="work" placeholder="Work"
-										required />
-								</div>
-								<div class="input-group mt-3">
-									<textarea class="form-control" name="description" rows="10"
-										placeholder="Write something about yourself"></textarea>
-								</div>
-								<div class="custom-file mt-3">
-									<input type="file" name="profileImage" placeholder="Select Image" />
-								</div>
-								<div class="container text-center mt-3">
-									<button class="btn btn-outline-primary">Add Contact</button>
-								</div>
-							</form>
+			<div class="card mx-auto" style="width: 65rem;">
+				<div class="card-body">
+					<h1 class="text-center">Add Contact</h1>
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="col-md-6 offset-md-3">
+								<form action="#" th:object="${contact}" enctype="multipart/form-data" method="post"
+									th:action="@{/user/process-contact}" class="mt-2">
+									<div class="input-group">
+										<input class="form-control" type="text" id="firstName" name="name"
+											placeholder="First Name" required />
+									</div>
+									<div class="input-group mt-3">
+										<input class="form-control" type="text" id="secondName" name="secondName"
+											placeholder="Second Name" required />
+									</div>
+									<div class="input-group mt-3">
+										<input class="form-control" type="email" id="email" name="email"
+											placeholder="Email" required />
+									</div>
+									<div class="input-group mt-3">
+										<input class="form-control" type="text" id="phone" name="phone"
+											placeholder="Phone" required />
+									</div>
+									<div class="input-group mt-3">
+										<input class="form-control" type="text" id="work" name="work" placeholder="Work"
+											required />
+									</div>
+									<div class="input-group mt-3">
+										<textarea class="form-control" name="description" rows="10"
+											placeholder="Write something about yourself"></textarea>
+									</div>
+									<div class="custom-file mt-3">
+										<input type="file" name="profileImage" placeholder="Select Image" />
+									</div>
+									<div class="container text-center mt-3">
+										<button class="btn btn-outline-primary">Add Contact</button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

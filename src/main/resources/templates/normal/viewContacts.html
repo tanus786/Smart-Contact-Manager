@@ -14,57 +14,69 @@
 				<span th:text="${msg.content}"></span>
 			</div>
 		</div>
-		<div class="">
-			<h1 class="text-center">All Contacts</h1>
-			<table class="table css-serial">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">SNo.</th>
-						<th scope="col">First Name</th>
-						<th scope="col">Second Name</th>
-						<th scope="col">Email</th>
-						<th scope="col">Phone</th>
-						<th scope="col">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="c: ${contacts}">
-						<td scope="row"></td>
-						<td>
+		<div class="card mx-auto" style="width: 65rem;">
+			<div class="card-body">
+				<h1 class="text-center">All Contacts</h1>
+				<!--Search Field-->
+				<div class="search-container my-4">
+					<input onkeyup="search()" id="search" type="text" class="form-control" placeholder="Search" />
+					<div class="search-result">
+						<!--Result of search-->
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table css-serial">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">SNo.</th>
+								<th scope="col">First Name</th>
+								<th scope="col">Second Name</th>
+								<th scope="col">Email</th>
+								<th scope="col">Phone</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="c: ${contacts}">
+								<td scope="row"></td>
+								<td>
 
-							<img class="my-profile-picture" th:src="@{'/images/'+${c.image}}" alt="Profile Picture" />
-							<span th:text="${c.name}"></span>
+									<img class="my-profile-picture" th:src="@{'/images/'+${c.image}}"
+										alt="Profile Picture" />
+									<span th:text="${c.name}"></span>
 
-						</td>
-						<td th:text="${c.secondName}"></td>
-						<td>
-							<a th:href="@{'/user/contact/'+${c.cId}}">
-								<span th:text="${c.email}"></span>
-							</a>
-						</td>
-						<td th:text="${c.phone}"></td>
-						<td>
+								</td>
+								<td th:text="${c.secondName}"></td>
+								<td>
+									<a th:href="@{'/user/contact/'+${c.cId}}">
+										<span th:text="${c.email}"></span>
+									</a>
+								</td>
+								<td th:text="${c.phone}"></td>
+								<td>
 
-							<a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a>
-							<!--<form th:action="@{'/user/update/'+${c.cId}}" method="post">
+									<a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a>
+									<!--<form th:action="@{'/user/update/'+${c.cId}}" method="post">
 								<button class="btn btn-warning btn-sm mt-2" type="submit">Update</button>
 							</form>-->
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!--Pagination-->
-			<nav aria-label="Page navigation example">
-				<ul class="pagination">
-					<li th:if="${currentPage!=0}" class="page-item"><a class="page-link" href="#"
-							th:href="@{'/user/viewContacts/'+${currentPage-1}}">Previous</a></li>
-					<li th:classappend="${currentPage == i-1 ? 'active':''}"
-						th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link"
-							th:href="@{'/user/viewContacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
-					<li th:if="${currentPage+1!=totalPages}" class="page-item"><a class="page-link" href="#"
-							th:href="@{'/user/viewContacts/'+${currentPage+1}}">Next</a></li>
-				</ul>
-			</nav>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--Pagination-->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage!=0}" class="page-item"><a class="page-link" href="#"
+								th:href="@{'/user/viewContacts/'+${currentPage-1}}">Previous</a></li>
+						<li th:classappend="${currentPage == i-1 ? 'active':''}"
+							th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link"
+								th:href="@{'/user/viewContacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
+						<li th:if="${currentPage+1!=totalPages}" class="page-item"><a class="page-link" href="#"
+								th:href="@{'/user/viewContacts/'+${currentPage+1}}">Next</a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</section>
 </body>

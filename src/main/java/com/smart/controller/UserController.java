@@ -151,6 +151,13 @@ public class UserController {
 		return "normal/update";
 	}
 
+	// Profile Handler
+	@GetMapping("/profile")
+	public String profile(Model m) {
+		m.addAttribute("title", "Profile");
+		return "normal/profile";
+	}
+
 	// Update contact processing
 //	@PostMapping("/processUpdate")
 //	public String processUpdate(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file,

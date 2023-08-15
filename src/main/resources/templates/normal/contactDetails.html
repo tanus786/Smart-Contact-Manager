@@ -8,7 +8,8 @@
 
 <body>
 	<section>
-		<div class="card mx-auto" th:if="${contact}" style="width: 25rem;">
+		
+		<div class="card mx-auto" th:if="${contact}" style="width: 65rem;">
 			<div class="text-center mt-2">
 				<img style="width:200px; height: 200px;" class="card-img-top my-profile-picture"
 					th:src="@{'/images/'+${contact.image}}" alt="Profile Picture">
@@ -38,8 +39,7 @@
 				</table>
 				<div class="container text-center">
 					<a th:href="@{'/user/delete/'+${contact.cId}}" class="btn btn-danger btn-sm btn-block">Delete</a>
-					<!--<button class="btn btn-warning btn-sm btn-block">Edit</button>
-				-->
+					<!--<button class="btn btn-warning btn-sm btn-block">Edit</button>-->
 				</div>
 			</div>
 		</div>

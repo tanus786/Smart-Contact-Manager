@@ -8,7 +8,15 @@
 
 <body>
 	<section>
-		<h1>This is private </h1>
+		<div class="card mx-auto" style="width: 65rem;">
+			<div class="card-body text-center">
+				<img style="width:200px; height: 200px;" class="card-img-top" th:src="@{'/images/contact.png'}"
+					alt="Profile Picture">
+				<h2 class="card-title text-center text-secondary">Start Adding Your Contacts!!</h2>
+
+				<a href="/user/addContact" class="btn btn-primary btn-block mt-3">Add Contact</a>
+			</div>
+		</div>
 	</section>
 </body>
 

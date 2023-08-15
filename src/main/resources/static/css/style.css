@@ -2,16 +2,31 @@ body {
 	background: #e2e2e2;
 }
 
+.search-container {
+	position: relative;
+}
+
 .bg-primary1 {
 	background: #424242 !important;
 }
-.my-profile-picture{
+
+.search-result {
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid gray;
+	display: none;
+}
+
+.my-profile-picture {
 	width: 30px;
 	height: 30px;
 	object-fit: cover;
 	border-radius: 50%;
 	border: 1px solid black;
 }
+
 .banner {
 	width: 100%;
 	height: 90vh;
