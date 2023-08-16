@@ -41,7 +41,7 @@ public class UserController {
 	public void addCommonData(Model model, Principal principal) {
 		String userName = principal.getName();
 //		System.out.println(userName);
-		// Get the use using userName(email)
+		// Get the user using userName(email)
 		User user = userRepository.getUserByUserName(userName);
 //		System.err.println(user);
 		model.addAttribute("user", user);
